@@ -6,8 +6,9 @@ export const notes = createSlice({
         items: [
             {
                 id: "1",
-                title: "hello",
-                content: "here is the content"
+                title: "card sample",
+                content: "here is the content",
+                color: "#E91E63",
             },
         ],
     },
@@ -15,8 +16,13 @@ export const notes = createSlice({
         addNote: (state,action) => {
             state.items.push(action.payload);
         },
+        deleteNote: (state,action) => {
+            const id = action.payload;
+            const filtered = state.items.filter((item) => item.id !== id); // silinen item disindakileri gosteren filtre
+            state.items = filtered;
+        }
     },
 })
 
-export const {addNote} = notes.actions;
+export const { addNote, deleteNote } = notes.actions;
 export default notes.reducer;

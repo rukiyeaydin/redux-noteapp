@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import "./pages.css";
-import { BiSolidEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addNote } from "../redux/notes";
+import { addNote, deleteNote } from "../redux/notes";
+import { nanoid } from '@reduxjs/toolkit';
 
 const Page = () => {
   const items = useSelector((state) => state.notes.items);
@@ -27,6 +27,13 @@ const Page = () => {
     else if(!noteContent){
       alert('content can not be empty')
     }
+    else{
+      dispatch(addNote({id:nanoid(), title: noteTitle, content: noteContent, color:backgroundColor}));
+    }
+    
+    setNoteTitle('');
+    setNoteContent('');
+    setBackgroundColor('white');
   };
 
 
@@ -59,16 +66,17 @@ const Page = () => {
           <input type="text" className='inputmiddle' />
         </div>
         <div className="down">
-          <div className="card">
+          {items.map((item) => (
+          <div className="card" key={item.id} style={{backgroundColor:item.color}}> 
             <div className="icerik" style={{ textAlign: "left" }}>
-              <h2>Başlık</h2>
-              <p>icerik</p>
+              <h2>{item.title}</h2>
+              <p>{item.content}</p>
             </div>
             <div className="icons">
-              <BiSolidEdit className='icon' />
-              <AiFillDelete className='icon' />
+              <AiFillDelete className='icon' onClick={() => dispatch(deleteNote(item.id))} />
             </div>
           </div>
+          ))}
         </div>
       </div>
     </div>

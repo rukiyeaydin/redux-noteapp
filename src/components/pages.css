@@ -25,6 +25,7 @@ body{
     border-radius: 20px;
     background-color: #157789;
     margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 .left{
     margin-right: 50px;
@@ -111,7 +112,7 @@ input:focus, textarea:focus{
     flex-wrap: wrap;
 }
 .card{
-    background-color: 	#FF8F00;
+    background-color: #FF8F00;
     width: 300px;
     height: 270px;
     margin: 20px;
@@ -126,7 +127,7 @@ input:focus, textarea:focus{
     font-size: xx-large;
     cursor: pointer;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 }
 .icon{
     padding: 5px;
@@ -150,6 +151,7 @@ input:focus, textarea:focus{
     border: none;
     background-color: #329cae;
     color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 @media screen and (max-width: 850px){
