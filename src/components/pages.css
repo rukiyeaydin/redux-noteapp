@@ -50,6 +50,13 @@ input:focus, textarea:focus{
     text-align: start;
     display: flex;
 }
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 .add{
     padding: 5px;
     margin: 20px;
@@ -58,9 +65,11 @@ input:focus, textarea:focus{
     border: none;
     font-size: larger;
     cursor: pointer;
+    color: white;
+    border: 2px solid white;
 }
 .add:hover{
-    background-color: rgb(128, 247, 91);
+    border: 2px solid transparent;
 }
 .colors{
     background-color: white;
