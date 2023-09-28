@@ -11,6 +11,7 @@ export const notes = createSlice({
                 color: "#E91E63",
             },
         ],
+        actives: "",
     },
     reducers: {
         addNote: (state,action) => {
@@ -20,9 +21,12 @@ export const notes = createSlice({
             const id = action.payload;
             const filtered = state.items.filter((item) => item.id !== id); // silinen item disindakileri gosteren filtre
             state.items = filtered;
+        },
+        searchFilter: (state,action) => {
+            state.actives = action.payload;
         }
     },
 })
 
-export const { addNote, deleteNote } = notes.actions;
+export const { addNote, deleteNote, searchFilter } = notes.actions;
 export default notes.reducer;

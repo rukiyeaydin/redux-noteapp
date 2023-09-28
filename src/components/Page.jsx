@@ -3,11 +3,16 @@ import "./pages.css";
 import { AiFillDelete } from "react-icons/ai";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { addNote, deleteNote } from "../redux/notes";
+import { addNote, deleteNote, searchFilter } from "../redux/notes";
 import { nanoid } from '@reduxjs/toolkit';
 
 const Page = () => {
-  const items = useSelector((state) => state.notes.items);
+  const items = useSelector((state) => {
+    const searchQuery = state.notes.actives.toLowerCase();
+    return state.notes.items.filter((item) => {
+      return item.title.toLowerCase().includes(searchQuery) || item.content.toLowerCase().includes(searchQuery);
+    });
+  });
   const dispatch = useDispatch();
 
   const [backgroundColor, setBackgroundColor] = useState("white");
@@ -63,7 +68,7 @@ const Page = () => {
         </div>
         <div className="middle" style={{ margin: "20px" }}>
           <h2 style={{ color: "black" }}>Search</h2>
-          <input type="text" className='inputmiddle' />
+          <input type="text" className='inputmiddle' placeholder='search...' onChange={(e) => dispatch(searchFilter(e.target.value))}/>
         </div>
         <div className="down">
           {items.map((item) => (
